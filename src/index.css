@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-lcd {
+    font-family: 'Chakra Petch', 'Orbitron', monospace;
+  }
+  .font-digital {
+    font-family: 'VT323', 'Chakra Petch', monospace;
+  }
+  .font-sans-app {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Realistic Upix 231M / MarQ AC Remote Shell */
+.upix-remote-body {
+  background: linear-gradient(180deg, #fbfbf9 0%, #f4f4f0 40%, #ecece6 100%);
+  box-shadow: 
+    0 30px 60px -15px rgba(0, 0, 0, 0.6),
+    0 10px 25px -5px rgba(0, 0, 0, 0.4),
+    inset 0 2px 3px rgba(255, 255, 255, 0.9),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.1),
+    0 0 0 1px #d6d6ce;
+}
+
+/* Authentic Reflective Monochrome LCD Screen (Model 231M - No Backlight) */
+.upix-lcd-screen {
+  background: linear-gradient(145deg, #99a797 0%, #8c9b8b 50%, #839182 100%);
+  box-shadow: 
+    inset 0 3px 6px rgba(0, 0, 0, 0.45),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.3),
+    0 1px 2px rgba(255, 255, 255, 0.8);
+  border: 2px solid #5a6659;
+}
+
+/* High contrast LCD segment color */
+.lcd-ink {
+  color: #17231f;
+  text-shadow: 0.5px 0.5px 0px rgba(255, 255, 255, 0.2);
+}
+
+/* Yellow START / STOP Button */
+.button-start-stop {
+  background: linear-gradient(180deg, #facc15 0%, #eab308 50%, #ca8a04 100%);
+  box-shadow: 
+    0 4px 6px -1px rgba(161, 98, 7, 0.4),
+    0 2px 4px -2px rgba(161, 98, 7, 0.3),
+    inset 0 2px 2px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 2px rgba(113, 63, 18, 0.5);
+  border: 1px solid #b45309;
+  transition: all 0.07s ease-in-out;
+}
+
+.button-start-stop:active {
+  transform: translateY(2px) scale(0.97);
+  box-shadow: 
+    0 1px 2px rgba(161, 98, 7, 0.5),
+    inset 0 2px 4px rgba(113, 63, 18, 0.6);
+}
+
+/* Standard Grey Rubber Buttons */
+.button-rubber-grey {
+  background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 50%, #94a3b8 100%);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.25),
+    0 2px 3px -1px rgba(0, 0, 0, 0.15),
+    inset 0 2px 2px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 2px rgba(51, 65, 85, 0.3);
+  border: 1px solid #94a3b8;
+  transition: all 0.07s ease-in-out;
+}
+
+.button-rubber-grey:active {
+  transform: translateY(2px) scale(0.97);
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    inset 0 2px 3px rgba(51, 65, 85, 0.4);
+}
+
+/* Central SET TEMP Rocker */
+.button-set-temp-panel {
+  background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 50%, #a6b4c5 100%);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.25),
+    inset 0 2px 2px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 2px rgba(51, 65, 85, 0.3);
+  border: 1px solid #94a3b8;
+}
+
+/* Hidden LED display through AC plastic */
+.ac-hidden-led {
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.9),
+               0 0 20px rgba(56, 189, 248, 0.6),
+               0 0 30px rgba(56, 189, 248, 0.3);
+}
+
+/* IR Blaster Pulse Animation */
+@keyframes irPulseGlow {
+  0% { transform: scale(1); opacity: 0.9; box-shadow: 0 0 4px #ec4899; }
+  50% { transform: scale(1.6); opacity: 1; box-shadow: 0 0 20px 8px #d946ef; }
+  100% { transform: scale(1); opacity: 0; box-shadow: 0 0 0px transparent; }
+}
+
+.ir-blaster-active {
+  animation: irPulseGlow 0.35s ease-out;
+}

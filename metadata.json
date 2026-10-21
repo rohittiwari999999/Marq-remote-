@@ -1,0 +1,6 @@
+{
+  "name": "MarQ AC Remote Control - 1.5 Ton Fixed Speed",
+  "description": "Full-featured Android remote app for MarQ 1.5 Ton Fixed Speed Split AC with haptic feedback, realistic LCD display, IR blaster signal generator, and virtual indoor AC unit simulator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
