@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { 
   Zap, Thermometer, Droplets, Wind, Power, 
-  RotateCw, ShieldCheck, Activity, Gauge
+  RotateCw, ShieldCheck, Activity, Gauge, Camera, Image as ImageIcon, X
 } from 'lucide-react';
 import { ACState } from '../utils/irProtocol';
 
@@ -10,6 +10,9 @@ interface AcIndoorUnitProps {
 }
 
 export const AcIndoorUnit: React.FC<AcIndoorUnitProps> = ({ state }) => {
+  // Real Wall AC photo toggle
+  const [showRealPhoto, setShowRealPhoto] = useState<boolean>(false);
+
   // Room physics simulation
   const [roomTemp, setRoomTemp] = useState<number>(31.5);
   const [roomHumidity, setRoomHumidity] = useState<number>(68);
@@ -107,12 +110,45 @@ export const AcIndoorUnit: React.FC<AcIndoorUnitProps> = ({ state }) => {
           </div>
 
           <div className="flex items-center gap-2 text-xs">
+            <button
+              onClick={() => setShowRealPhoto(!showRealPhoto)}
+              className="text-[11px] font-semibold text-cyan-300 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 px-2.5 py-1 rounded-lg border border-slate-700 flex items-center gap-1.5 transition"
+            >
+              <ImageIcon className="w-3.5 h-3.5 text-cyan-400" />
+              <span>{showRealPhoto ? 'Hide Photo' : 'Real AC Photo'}</span>
+            </button>
             <span className={`w-2 h-2 rounded-full ${state.power ? 'bg-emerald-400 animate-pulse' : 'bg-slate-600'}`} />
-            <span className="font-medium text-slate-400">
+            <span className="font-medium text-slate-400 hidden sm:inline">
               {state.power ? (compressorOn ? 'Compressor Active (100% Load)' : 'Thermostat Idle') : 'Standby'}
             </span>
           </div>
         </div>
+
+        {/* Real AC Photo View */}
+        {showRealPhoto && (
+          <div className="mb-4 bg-slate-950 border border-cyan-500/40 rounded-2xl p-2.5 shadow-xl animate-fade-in relative z-20">
+            <div className="flex items-center justify-between text-xs text-cyan-300 font-bold px-1 mb-1.5">
+              <span>Your MarQ 1.5 Ton Split AC Indoor Unit</span>
+              <button
+                onClick={() => setShowRealPhoto(false)}
+                className="text-slate-400 hover:text-white"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="rounded-xl overflow-hidden bg-black flex justify-center max-h-64">
+              <img
+                src="/public/assets/aistudio/IMG_20261022_190956_8fa59da9.jpg"
+                alt="MarQ Split AC on Wall"
+                className="object-contain max-h-64 rounded-lg"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="text-[11px] text-slate-400 text-center mt-1.5">
+              Notice the receiver window behind the white plastic panel on the right. Point your phone directly at this area.
+            </div>
+          </div>
+        )}
 
         {/* 3D Chassis of Split AC */}
         <div className="w-full bg-gradient-to-b from-white via-slate-50 to-slate-200 rounded-2xl shadow-xl border border-slate-300 p-4 pt-5 pb-7 relative flex flex-col justify-between">

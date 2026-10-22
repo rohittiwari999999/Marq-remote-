@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Wifi, Signal, BatteryCharging, Battery, Volume2, VolumeX, Vibrate, Sparkles, Sliders, Radio } from 'lucide-react';
+import { Wifi, Signal, BatteryCharging, Battery, Volume2, VolumeX, Vibrate, Sparkles, Sliders, Radio, AlertTriangle } from 'lucide-react';
 import { soundManager } from '../utils/soundAndHaptics';
 
 interface AndroidStatusBarProps {
   onOpenPresets: () => void;
   onOpenIrStudio: () => void;
+  onOpenDiagnostic: () => void;
   onToggleTheme?: () => void;
   activeView: 'remote' | 'split' | 'ac';
   setActiveView: (view: 'remote' | 'split' | 'ac') => void;
@@ -13,6 +14,7 @@ interface AndroidStatusBarProps {
 export const AndroidStatusBar: React.FC<AndroidStatusBarProps> = ({
   onOpenPresets,
   onOpenIrStudio,
+  onOpenDiagnostic,
   activeView,
   setActiveView,
 }) => {
@@ -151,6 +153,16 @@ export const AndroidStatusBar: React.FC<AndroidStatusBarProps> = ({
             }`}
           >
             <Vibrate className="w-4 h-4" />
+          </button>
+
+          <button
+            onClick={onOpenDiagnostic}
+            title="Diagnose why AC is not responding to phone"
+            className="px-2 py-1.5 rounded-lg border border-amber-500/50 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 font-semibold transition-colors flex items-center gap-1.5 text-xs animate-pulse hover:animate-none"
+          >
+            <AlertTriangle className="w-4 h-4 text-amber-400" />
+            <span className="hidden sm:inline">AC Not Working?</span>
+            <span className="sm:hidden">Fix AC</span>
           </button>
 
           <button
