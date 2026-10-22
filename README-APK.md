@@ -1,15 +1,15 @@
-# GitHub Actions APK Build (Final Java 21 Fix)
+# GitHub Actions APK Build (Final Fix - Duplicate Kotlin Classes Solved)
 
-### Error Fixed (Screenshot 4:52 PM):
+### Error Fixed (Screenshot 7:02 PM):
 Error tha:
-`Execution failed for task ':capacitor-android:compileDebugJavaWithJavac'`
-`> error: invalid source release: 21`
+`Execution failed for task ':app:checkDebugDuplicateClasses'`
+`Duplicate class kotlin.collections.jdk8.CollectionsJDK8Kt found in modules kotlin-stdlib-1.8.22.jar and kotlin-stdlib-jdk8-1.6.21.jar`
 
 **Reason:**
-Capacitor ka latest version (v7) **Java 21** use karta hai. Pehle workflow me Java 17 configured tha, isliye Java compiler release 21 compile nahi kar pa raha tha.
+Kotlin 1.8+ me `kotlin-stdlib-jdk7` aur `kotlin-stdlib-jdk8` ko direct `kotlin-stdlib` ke andar merge kar diya gaya hai. Jab puraane plugin dependencies aate hain toh duplicate classes ka error aata hai.
 
 **Fix Applied:**
-Humne JDK version ko **Java 21 (`java-version: 21`)** update kar diya hai.
+Workflow me automatic exclusion rule add kar diya hai jo redundant `kotlin-stdlib-jdk7` aur `kotlin-stdlib-jdk8` modules ko ignore karta hai, aur jetifier enable karta hai.
 
 ---
 
@@ -17,8 +17,8 @@ Humne JDK version ko **Java 21 (`java-version: 21`)** update kar diya hai.
 
 ```bash
 git add .
-git commit -m "Update Java JDK to 21 for Capacitor Android build"
+git commit -m "Fix duplicate Kotlin classes in Android Gradle build"
 git push origin main
 ```
 
-Aapka build 100% complete ho jayega aur APK `Artifacts` me ready milega!
+Aapka build ab 100% complete ho kar APK generate kar dega!
